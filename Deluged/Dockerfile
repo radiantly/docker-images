@@ -5,7 +5,7 @@ RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositor
 RUN apk update && \
     apk add --no-cache deluge && \
     deluged && \
-    deluge-console config -s allow_remote True && \
+    (until (deluge-console config -s allow_remote True); do sleep 2; done) && \
     pkill deluged
 
 EXPOSE 58846
