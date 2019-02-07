@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   deluged:
-    image: deluged
+    image: c0derlint/deluged
     volumes:
       - ~/Downloads:/root/Downloads
       - ~/deluge:/root/.config/deluge/
