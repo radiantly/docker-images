@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  deluged:
+    image: deluged
+    volumes:
+      - ~/Downloads:/root/Downloads
+      - ~/deluge:/root/.config/deluge/
+    ports:
+      - "47582:58846" # Random port to deluge's 58846 port.
+      - "52381-52391:6881-6891" # Routing torrents from external random ports to default 6881-6891.
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+      update_config:
+        parallelism: 1
+        failure_action: rollback
+        order: start-first
